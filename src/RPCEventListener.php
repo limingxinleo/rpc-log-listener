@@ -36,7 +36,7 @@ class RPCEventListener implements ListenerInterface
     {
         if ($event instanceof RPCEvent) {
             if ($event->throwable) {
-                $this->logger->error($this->format($event));
+                $this->logger->warning($this->format($event));
                 return;
             }
 
