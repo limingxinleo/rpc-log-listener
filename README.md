@@ -15,3 +15,5 @@ return [
     Hyperf\RPCLogListener\RPCEventListener::class,
 ];
 ```
+
+当然，你也可以根据 `Hyperf\RPCLogListener\RPCEventListener` 来设计适配自己的监听器。
