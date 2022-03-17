@@ -1,5 +1,5 @@
-# component-creator
+# RPC Log Listener for Hyperf
 
 ```
-composer create-project hyperf/component-creator
+composer require hyperf/rpc-log-listener
 ```

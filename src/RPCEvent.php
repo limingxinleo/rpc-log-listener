@@ -11,18 +11,17 @@ declare(strict_types=1);
  */
 namespace Hyperf\RPCLogListener;
 
-class ConfigProvider
+use Throwable;
+
+class RPCEvent
 {
-    public function __invoke(): array
-    {
-        return [
-            'annotations' => [
-                'scan' => [
-                    'paths' => [
-                        __DIR__,
-                    ],
-                ],
-            ],
-        ];
+    public function __construct(
+        public string $service,
+        public string $method,
+        public array $params,
+        public mixed $result,
+        public float $time,
+        public ?Throwable $throwable
+    ) {
     }
 }
