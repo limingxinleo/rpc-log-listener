@@ -51,7 +51,7 @@ class RPCAspect extends AbstractAspect
         } catch (\Throwable) {
         }
 
-        if ($throwable) {
+        if (! is_null($throwable)) {
             throw $throwable;
         }
 
