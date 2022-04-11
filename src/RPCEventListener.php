@@ -51,7 +51,15 @@ class RPCEventListener implements ListenerInterface
 
     protected function format(RPCEvent $event): string
     {
-        $result = $event->throwable ? ['rpc_failed' => true, 'message' => $event->throwable->getMessage()] : $event->result;
+        $result = $event->result;
+        if ($throwable = $event->throwable) {
+            $result = [
+                'rpc_failed' => true,
+                'code' => $throwable->getCode(),
+                'message' => $throwable->getMessage(),
+            ];
+        }
+
         return Json::encode([
             'service' => $event->service,
             'method' => $event->method,
