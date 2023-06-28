@@ -16,6 +16,7 @@ use Hyperf\Di\Aop\AbstractAspect;
 use Hyperf\Di\Aop\ProceedingJoinPoint;
 use Hyperf\RpcClient\ServiceClient;
 use Psr\EventDispatcher\EventDispatcherInterface;
+use Throwable;
 
 #[Aspect]
 class RPCAspect extends AbstractAspect
@@ -36,7 +37,7 @@ class RPCAspect extends AbstractAspect
 
         try {
             $result = $proceedingJoinPoint->process();
-        } catch (\Throwable $ex) {
+        } catch (Throwable $ex) {
             $throwable = $ex;
         }
 
