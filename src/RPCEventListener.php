@@ -13,7 +13,7 @@ namespace Hyperf\RPCLogListener;
 
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Logger\LoggerFactory;
-use Hyperf\Utils\Codec\Json;
+use Hyperf\Codec\Json;
 use Psr\Log\LoggerInterface;
 
 class RPCEventListener implements ListenerInterface
