@@ -41,7 +41,7 @@ class RPCEventListener implements ListenerInterface
                 return;
             }
 
-            if ($event->time > $this->expiredTimestamp()) {
+            if ($event->time > $this->expiredTimestamp($event)) {
                 // 内部RPC请求，超过200ms时，记录日志
                 $this->logger->error($this->format($event));
             } else {
@@ -50,7 +50,7 @@ class RPCEventListener implements ListenerInterface
         }
     }
 
-    public function expiredTimestamp(): float
+    public function expiredTimestamp(RPCEvent $event): float
     {
         return 0.2;
     }
