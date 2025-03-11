@@ -9,6 +9,7 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 namespace Hyperf\RPCLogListener;
 
 use Hyperf\Di\Annotation\Aspect;
@@ -49,7 +50,7 @@ class RPCAspect extends AbstractAspect
             $time = microtime(true) - $beginTime;
 
             $this->dispatcher->dispatch(new RPCEvent($service, $method, $params, $result, $time, $throwable));
-        } catch (\Throwable) {
+        } catch (Throwable) {
         }
 
         if (! is_null($throwable)) {

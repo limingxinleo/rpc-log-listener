@@ -9,11 +9,12 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
+
 namespace Hyperf\RPCLogListener;
 
+use Hyperf\Codec\Json;
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Logger\LoggerFactory;
-use Hyperf\Codec\Json;
 use Psr\Log\LoggerInterface;
 
 class RPCEventListener implements ListenerInterface
@@ -40,13 +41,18 @@ class RPCEventListener implements ListenerInterface
                 return;
             }
 
-            if ($event->time > 0.2) {
+            if ($event->time > $this->expiredTimestamp()) {
                 // 内部RPC请求，超过200ms时，记录日志
                 $this->logger->error($this->format($event));
             } else {
                 $this->logger->info($this->format($event));
             }
         }
+    }
+
+    public function expiredTimestamp(): float
+    {
+        return 0.2;
     }
 
     protected function format(RPCEvent $event): string
