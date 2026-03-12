@@ -43,7 +43,7 @@ class RPCAspect extends AbstractAspect
         }
 
         try {
-            $method = $proceedingJoinPoint->arguments['keys']['method'] ?? '';
+            $method = $proceedingJoinPoint->arguments['keys']['name'] ?? $proceedingJoinPoint->arguments['keys']['method'] ?? '';
             $params = $proceedingJoinPoint->arguments['keys']['params'] ?? [];
             $service = $proceedingJoinPoint->getInstance()->getServiceName();
 
