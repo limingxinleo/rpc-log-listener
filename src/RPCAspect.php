@@ -44,7 +44,7 @@ class RPCAspect extends AbstractAspect
 
         try {
             $method = $proceedingJoinPoint->arguments['keys']['name'] ?? $proceedingJoinPoint->arguments['keys']['method'] ?? '';
-            $params = $proceedingJoinPoint->arguments['keys']['params'] ?? [];
+            $params = $proceedingJoinPoint->arguments['keys']['arguments'] ?? $proceedingJoinPoint->arguments['keys']['params'] ?? [];
             $service = $proceedingJoinPoint->getInstance()->getServiceName();
 
             $time = microtime(true) - $beginTime;
